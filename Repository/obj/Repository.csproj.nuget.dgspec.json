@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\gabriel.frança\\source\\repos\\APITest\\Repository\\Repository.csproj": {}
+    "C:\\Users\\gabriel.frança\\Documents\\GitHub\\APITest\\Repository\\Repository.csproj": {}
   },
   "projects": {
-    "C:\\Users\\gabriel.frança\\source\\repos\\APITest\\Domain\\Domain.csproj": {
+    "C:\\Users\\gabriel.frança\\Documents\\GitHub\\APITest\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\gabriel.frança\\source\\repos\\APITest\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\gabriel.frança\\Documents\\GitHub\\APITest\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\gabriel.frança\\source\\repos\\APITest\\Domain\\Domain.csproj",
+        "projectPath": "C:\\Users\\gabriel.frança\\Documents\\GitHub\\APITest\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\gabriel.frança\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\gabriel.frança\\source\\repos\\APITest\\Domain\\obj\\",
+        "outputPath": "C:\\Users\\gabriel.frança\\Documents\\GitHub\\APITest\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -59,14 +59,14 @@
         }
       }
     },
-    "C:\\Users\\gabriel.frança\\source\\repos\\APITest\\Repository\\Repository.csproj": {
+    "C:\\Users\\gabriel.frança\\Documents\\GitHub\\APITest\\Repository\\Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\gabriel.frança\\source\\repos\\APITest\\Repository\\Repository.csproj",
+        "projectUniqueName": "C:\\Users\\gabriel.frança\\Documents\\GitHub\\APITest\\Repository\\Repository.csproj",
         "projectName": "Repository",
-        "projectPath": "C:\\Users\\gabriel.frança\\source\\repos\\APITest\\Repository\\Repository.csproj",
+        "projectPath": "C:\\Users\\gabriel.frança\\Documents\\GitHub\\APITest\\Repository\\Repository.csproj",
         "packagesPath": "C:\\Users\\gabriel.frança\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\gabriel.frança\\source\\repos\\APITest\\Repository\\obj\\",
+        "outputPath": "C:\\Users\\gabriel.frança\\Documents\\GitHub\\APITest\\Repository\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -85,8 +85,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\gabriel.frança\\source\\repos\\APITest\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\gabriel.frança\\source\\repos\\APITest\\Domain\\Domain.csproj"
+              "C:\\Users\\gabriel.frança\\Documents\\GitHub\\APITest\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\gabriel.frança\\Documents\\GitHub\\APITest\\Domain\\Domain.csproj"
               }
             }
           }

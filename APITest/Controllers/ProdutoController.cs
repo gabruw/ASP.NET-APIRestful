@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Domain.DTO;
 using Microsoft.AspNetCore.Authorization;
@@ -34,7 +32,14 @@ namespace APITest.Controllers
             var produto = await _apiTestContext.Produto.FindAsync(id);
 
             // https://www.youtube.com/watch?v=ccVmPgxNE6c ---- 38:23
-            return produto != null ? Ok(produto) : NotFound("Produto não encontrado");
+            if (produto != null)
+            {
+                return Ok(produto);
+            }
+            else
+            {
+                return NotFound("Produto não encontrado");
+            }
         }
     }
 }

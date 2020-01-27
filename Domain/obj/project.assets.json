@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\gabriel.frança\\source\\repos\\APITest\\Domain\\Domain.csproj",
+      "projectUniqueName": "C:\\Users\\gabriel.frança\\Documents\\GitHub\\APITest\\Domain\\Domain.csproj",
       "projectName": "Domain",
-      "projectPath": "C:\\Users\\gabriel.frança\\source\\repos\\APITest\\Domain\\Domain.csproj",
+      "projectPath": "C:\\Users\\gabriel.frança\\Documents\\GitHub\\APITest\\Domain\\Domain.csproj",
       "packagesPath": "C:\\Users\\gabriel.frança\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\gabriel.frança\\source\\repos\\APITest\\Domain\\obj\\",
+      "outputPath": "C:\\Users\\gabriel.frança\\Documents\\GitHub\\APITest\\Domain\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

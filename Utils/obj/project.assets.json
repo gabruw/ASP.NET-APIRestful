@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\gabriel.frança\\source\\repos\\APITest\\Utils\\Utils.csproj",
+      "projectUniqueName": "C:\\Users\\gabriel.frança\\Documents\\GitHub\\APITest\\Utils\\Utils.csproj",
       "projectName": "Utils",
-      "projectPath": "C:\\Users\\gabriel.frança\\source\\repos\\APITest\\Utils\\Utils.csproj",
+      "projectPath": "C:\\Users\\gabriel.frança\\Documents\\GitHub\\APITest\\Utils\\Utils.csproj",
       "packagesPath": "C:\\Users\\gabriel.frança\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\gabriel.frança\\source\\repos\\APITest\\Utils\\obj\\",
+      "outputPath": "C:\\Users\\gabriel.frança\\Documents\\GitHub\\APITest\\Utils\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
