@@ -49,11 +49,11 @@ namespace APITest
             {
                 auth.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 auth.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(bea =>
+            }).AddJwtBearer(jwt =>
             {
-                bea.RequireHttpsMetadata = true;
-                bea.SaveToken = true;
-                bea.TokenValidationParameters = new TokenValidationParameters
+                jwt.RequireHttpsMetadata = true;
+                jwt.SaveToken = true;
+                jwt.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(key),

@@ -1,8 +1,14 @@
-﻿using System.Linq;
+﻿using System;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Domain.DTO;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+using Utils;
 
 namespace APITest.Controllers
 {
@@ -12,11 +18,13 @@ namespace APITest.Controllers
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly JWTSettings _jwtSettings;
 
-        public AuthenticationController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+        public AuthenticationController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, IOptions<JWTSettings> jwtSettings)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _jwtSettings = jwtSettings.Value;
         }
 
         [HttpPost("register")]
@@ -43,7 +51,8 @@ namespace APITest.Controllers
 
             await _signInManager.SignInAsync(user, false);
 
-            return Ok("Registrado com sucesso!");
+            return Ok(await GenerateJwtToken(registerUser.Email));
+            //return Ok("Registrado com sucesso!");
         }
 
         [HttpPost("login")]
@@ -67,10 +76,29 @@ namespace APITest.Controllers
 
             if (result.Succeeded)
             {
-                return Ok("Logado com sucesso!");
+                return Ok(await GenerateJwtToken(loginUser.Email));
+                //return Ok("Logado com sucesso!");
             }
 
             return BadRequest("Usuário e/ou senha incorreta(s)");
+        }
+
+        private async Task<string> GenerateJwtToken(string email)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(_jwtSettings.SecretKey);
+
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Issuer = _jwtSettings.Sender,
+                Audience = _jwtSettings.ValidURI,
+                Expires = DateTime.UtcNow.AddHours(_jwtSettings.ExpirationTime),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
+
+            return tokenHandler.WriteToken(tokenHandler.CreateToken(tokenDescriptor));
         }
     }
 }
