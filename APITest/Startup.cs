@@ -1,18 +1,17 @@
-using Domain.DTO;
+using Utils;
+using System.Text;
 using Domain.IRepository;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Repository.Context;
+using Repository.Repository;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.IdentityModel.Tokens;
-using Repository.Context;
-using Repository.Repository;
-using System.Text;
-using Utils;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace APITest
 {
@@ -51,16 +50,16 @@ namespace APITest
                 auth.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             }).AddJwtBearer(jwt =>
             {
-                jwt.RequireHttpsMetadata = true;
                 jwt.SaveToken = true;
+                jwt.RequireHttpsMetadata = true;
                 jwt.TokenValidationParameters = new TokenValidationParameters
                 {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(key),
                     ValidateIssuer = true,
                     ValidateAudience = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = jwtSettings.Sender,
                     ValidAudience = jwtSettings.ValidURI,
-                    ValidIssuer = jwtSettings.Sender
+                    IssuerSigningKey = new SymmetricSecurityKey(key)
                 };
             });
 
@@ -81,6 +80,7 @@ namespace APITest
             app.UseRouting();
 
             // Autenticação
+            app.UseAuthorization();
             app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>

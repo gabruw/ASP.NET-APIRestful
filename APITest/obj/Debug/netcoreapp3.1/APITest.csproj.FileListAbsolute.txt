@@ -255,3 +255,6 @@ C:\Users\gabriel.frança\Documents\GitHub\APITest\APITest\bin\Debug\netcoreapp3.
 C:\Users\gabriel.frança\Documents\GitHub\APITest\APITest\bin\Debug\netcoreapp3.1\Utils.pdb
 C:\Users\gabriel.frança\Documents\GitHub\APITest\APITest\obj\Debug\netcoreapp3.1\APITest.RazorTargetAssemblyInfo.cache
 C:\Users\gabriel.frança\Documents\GitHub\APITest\APITest\obj\Debug\netcoreapp3.1\APITest.csproj.CopyComplete
+C:\Users\gabriel.frança\Documents\GitHub\APITest\APITest\bin\Debug\netcoreapp3.1\Microsoft.DotNet.PlatformAbstractions.dll
+C:\Users\gabriel.frança\Documents\GitHub\APITest\APITest\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyModel.dll
+C:\Users\gabriel.frança\Documents\GitHub\APITest\APITest\obj\Debug\netcoreapp3.1\APITest.MvcApplicationPartsAssemblyInfo.cs

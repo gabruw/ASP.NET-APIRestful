@@ -1,7 +1,7 @@
-﻿using Domain.IRepository;
+﻿using System.Linq;
+using Domain.IRepository;
 using Repository.Context;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Repository.Repository
 {

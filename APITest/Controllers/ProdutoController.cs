@@ -1,37 +1,36 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Domain.DTO;
-using Microsoft.AspNetCore.Authorization;
+﻿using Domain.DTO;
+using Domain.RDTO;
+using Utils.Authorize;
+using Domain.IRepository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Repository.Context;
 
 namespace APITest.Controllers
 {
-    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class ProdutoController : ControllerBase
     {
-        private readonly APITestContext _apiTestContext;
+        private readonly IProdutoRepository _produtoRepository;
 
-        public ProdutoController(APITestContext apiTestContext)
+        public ProdutoController(IProdutoRepository produtoRepository)
         {
-            _apiTestContext = apiTestContext;
+            _produtoRepository = produtoRepository;
         }
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Produto>>> GetProduto()
+        [HttpGet("getAll")]
+        [ClaimsAuthorize("Produto", "Consultar")]
+        public ActionResult<Produto> GetAllProduto()
         {
-            return await _apiTestContext.Produto.ToListAsync();
+            return Ok(_produtoRepository.GetAll());
         }
 
-        [HttpPost("{id}")]
-        public async Task<ActionResult<Produto>> GetProduto(long id)
+        [HttpGet("get/{id}")]
+        [ClaimsAuthorize("Produto", "Consultar")]
+        public ActionResult<Produto> GetProduto(long id)
         {
-            var produto = await _apiTestContext.Produto.FindAsync(id);
+            var produto = _produtoRepository.GetbyId(id);
 
-            // https://www.youtube.com/watch?v=ccVmPgxNE6c ---- 38:23
             if (produto != null)
             {
                 return Ok(produto);
@@ -40,6 +39,61 @@ namespace APITest.Controllers
             {
                 return NotFound("Produto não encontrado");
             }
+        }
+
+        [HttpPost]
+        [ClaimsAuthorize("Produto", "Incluir")]
+        public ActionResult<Produto> Create(RequestProduto rProduto)
+        {
+            decimal valor = 0;
+            decimal.TryParse(rProduto.Valor, out valor);
+
+            Produto produto = new Produto
+            {
+                Nome = rProduto.Nome,
+                Valor = valor
+            };
+
+            _produtoRepository.Incluid(produto);
+
+            return Ok("Produto incluído com sucesso");
+        }
+
+        [HttpPut("edit/{id}")]
+        [ClaimsAuthorize("Produto", "Editar")]
+        public IActionResult Edit(long id)
+        {
+            var produto = _produtoRepository.GetbyId(id);
+            if (produto == null)
+            {
+                return NotFound("Produto não encontrado");
+            }
+
+            try
+            {
+                _produtoRepository.Update(produto);
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                return NotFound("Produto não encontrado");
+            }
+
+            return Ok("Produto modificado com sucesso");
+        }
+
+        [HttpDelete("delete/{id}")]
+        [ClaimsAuthorize("Produto", "Excluir")]
+        public ActionResult<Produto> Delete(long id)
+        {
+            var produto = _produtoRepository.GetbyId(id);
+            if (produto == null)
+            {
+                return NotFound("Produto não encontrado");
+            }
+
+            _produtoRepository.Remove(produto);
+
+            return produto;
         }
     }
 }
